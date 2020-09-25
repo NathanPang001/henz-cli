@@ -16,7 +16,8 @@ def main():
     ## support help
     if len(args) < 1:
         print("HenZCLI tool is used for checking healthy links in HTML file")
-        print("HenZCLI tool supports multiple arguments as multiple files")
+        print("Basic usage as follow\n")
+        print("\thenzcli {path to html file} {another file}\n")
     else:
         ## support version check
         if (args[0] == "v" or args[0] == "version"):
