@@ -1,6 +1,7 @@
 # henz-cli
 
-osd release 0.1
+osd release 0.1  
+A cli tools to check broken links in HTML files
 
 ## Installation
 
