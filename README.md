@@ -13,3 +13,7 @@ A cli tools to check broken links in HTML files
 
 open terminal and run "henzcli {path to html file} {another path to html file}"  
 cli accept multiple path
+
+## Features
+
+All good links are printed in green color, bad links are red and broken links are gray
