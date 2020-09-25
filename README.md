@@ -6,7 +6,7 @@ A cli tools to check broken links in HTML files
 ## Installation
 
 1. install python
-2. open terminal and run "pip3 install -e ." to install cli
+2. open terminal and run "pip3 install -e ." to install cli  
    2a. to uninstall run "pip3 uninstall henzcli"
 
 ## Usage
