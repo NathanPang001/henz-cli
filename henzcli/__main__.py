@@ -37,7 +37,7 @@ def main():
                         URL = link.get('href').strip()
                         try:
                             # test links
-                            requestObj = requests.get(URL)
+                            requestObj = requests.get(URL,timeout=2)
                             if (requestObj.status_code == 404 or requestObj.status_code == 401):
                                 print(redColor + "Bad link " + URL + noColor)
                             elif (requestObj.status_code == 200):
