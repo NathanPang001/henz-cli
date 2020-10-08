@@ -5,7 +5,9 @@ setup(
     packages = ['henzcli'],
     install_requires=[
         'requests',
-        'beautifulsoup4'
+        'beautifulsoup4',
+        'python-dotenv',
+        'colorama'
     ],
     entry_points = {
         'console_scripts': [
