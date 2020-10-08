@@ -17,16 +17,30 @@ def main():
     if len(args) < 1:
         print("HenZCLI tool is used for checking healthy links in HTML file")
         print("Basic usage as follow\n")
-        print("\thenzcli {path to html file} {another file}\n")
+        print("\thenzcli <path to html file> <another file>\n")
     else:
+        onlyGood = onlyBad = None
+        allIncluded= True
         ## support version check
-        if (args[0] == "v" or args[0] == "version"):
+        if (args[0] == "--good"):
+            onlyGood = True
+            allIncluded = False
+        if (args[0] == "--bad"):
+            onlyBad = True
+            allIncluded = False
+        if (args[0] == "--all"):
+            allIncluded = True
+        if (args[0] == "-v" or args[0] == "--version"):
             print("HenZCLI version 0.1")
-        else:
+        # else:
             # print('count of args :: {}'.format(len(args)))  
-            print('passed argument :: {}'.format(args))
+        print('passed argument :: {}'.format(args))
+            # goodList = []
+            # badList = []
+            # unknownList = []
             ## support multiple files as arguments
-            for arg in args:
+        for arg in args:
+            if (arg[0] != "-"):
                 try: 
                     f = open(arg, "r")
                     print(purpleColor +  "In file " + arg)
@@ -38,16 +52,26 @@ def main():
                         try:
                             # test links
                             requestObj = requests.get(URL)
-                            if (requestObj.status_code == 404 or requestObj.status_code == 401):
+                            if ((onlyBad or allIncluded) and requestObj.status_code == 404 or requestObj.status_code == 401):
                                 print(redColor + "Bad link " + URL + noColor)
-                            elif (requestObj.status_code == 200):
+                                # badList.append(URL)
+                            elif ((onlyGood or allIncluded) and requestObj.status_code == 200):
                                 print(greenColor + "Good link " + URL + noColor)
+                                # goodList.append(URL)
                             else:
-                                print(dgrayColor + "Unknown "+ URL + noColor)
+                                if (allIncluded):
+                                    print(dgrayColor + "Unknown "+ URL + noColor)
+                                    # unknownList.append(URL)
                         except:
-                            print(dgrayColor + "Unknown "+ URL + noColor)
+                            if (allIncluded):
+                                print(dgrayColor + "Unknown "+ URL + noColor)
+                                # unknownList.append(URL)
                 except:
                     print(dgrayColor + "Unable to open file " + arg)
+                # for link in goodList:
+                # for link in badList:
+                # for link in unknownList:
+
 
 if __name__ == '__main__':
     main()
